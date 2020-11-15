@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="197.0" y="0.0">Encriptacio</node>
+    <node x="0.0" y="230.0">Missils</node>
+    <node x="149.0" y="230.0">Motor</node>
+    <node x="0.0" y="305.0">Avio</node>
+    <node x="0.0" y="155.0">Coordenades</node>
+    <node x="0.0" y="80.0">PistaArribada</node>
+    <node x="125.0" y="305.0">main</node>
+    <node x="181.0" y="155.0">AvioMilitar</node>
+    <node x="32.0" y="0.0">Pista</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="PistaArribada" target="Pista">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="466.0" y="228.5" />
+  <SelectedNodes>
+    <node>PistaArribada</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
