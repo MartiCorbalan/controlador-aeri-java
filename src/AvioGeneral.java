@@ -21,9 +21,7 @@ public class AvioGeneral{
     private int velocitat;
     private int alcada;
     private boolean trenAterratge;
-    private int distanciaMissil;
-    private int missils;
-    private String bandol;
+
 
     Scanner m = new Scanner(System.in);
 
@@ -54,36 +52,12 @@ public class AvioGeneral{
         this.velocitat=velocitat;
         this.trenAterratge=trenAterratge;
         this.matricula=matricula;
-        this.distanciaMissil=distanciaMissil;
-        this.missils=missils;
-        this.bandol=bandol;
+
+
 
     }
 
 
-    public String getBandol() {
-        return bandol;
-    }
-
-    public void setBandol(String bandol) {
-        this.bandol = bandol;
-    }
-
-    public int getDistanciaMissil() {
-        return distanciaMissil;
-    }
-
-    public void setDistanciaMissil(int distanciaMissil) {
-        this.distanciaMissil = distanciaMissil;
-    }
-
-    public int getMissils() {
-        return missils;
-    }
-
-    public void setMissils(int missils) {
-        this.missils = missils;
-    }
 
     public void setMatricula(String matricula){
         this.matricula=matricula;
@@ -219,7 +193,7 @@ public class AvioGeneral{
 
     public ArrayList<AvioGeneral> Gestionarmotor(ArrayList<AvioGeneral> espaiaeri, int i) throws InterruptedException {
 
-        String decisioMenuAvio = m.next();
+
 
                 System.out.println("ENGEGAR");
                 System.out.println("APAGAR");
@@ -227,16 +201,25 @@ public class AvioGeneral{
 
                 switch(v.toUpperCase()){
                     case "ENGEGAR" -> {
-                        espaiaeri.get(i).setMotor(true);
-                        System.out.println("el motor esta encès ");
-                        Thread.sleep(1500);
+                        if(!espaiaeri.get(i).getMotor()){
+
+                            espaiaeri.get(i).setMotor(true);
+                            System.out.println("el motor esta encès ");
+                            Thread.sleep(1500);
+                        }else {
+                            System.out.println("el motor ja esta ences melon! ");
+                        }
 
                     }
 
                     case "APAGAR" ->{
-                        espaiaeri.get(i).setMotor(false);
-                        System.out.println("el motor esta apagau ");
-                        Thread.sleep(1500);
+                            if (!espaiaeri.get(i).getMotor()){
+                                espaiaeri.get(i).setMotor(false);
+                                System.out.println("el motor esta apagau ");
+                                Thread.sleep(1500);
+                            }else{
+                                System.out.println("el motor ja esta apagat!!");
+                            }
                     }
                 }
                 return espaiaeri;
@@ -245,117 +228,149 @@ public class AvioGeneral{
 
     public ArrayList<AvioGeneral> GestionarVelocitat(ArrayList<AvioGeneral> espaiaeri, int i){
 
-        System.out.println("A quina velocitat vols accelerar?");
-        int velocitatAccel = m.nextInt();
-        System.out.println("vas a " + velocitatAccel);
+        if (!espaiaeri.get(i).getMotor()){
+            System.out.println("si el motor no esta ences no pots modificar la velocity ");
+        }else {
+            System.out.println("A quina velocitat vols accelerar?");
+            int velocitatAccel = m.nextInt();
+            System.out.println("vas a " + velocitatAccel);
 
-        if (velocitatAccel > getVelocitat()) {
-            espaiaeri.get(i).setVelocitat(velocitatAccel);
-        } else {
+            if (velocitatAccel > getVelocitat()) {
+                espaiaeri.get(i).setVelocitat(velocitatAccel);
+            } else {
 
-            System.out.println("No pots anar més lent si acceleres");
+                System.out.println("No pots anar més lent si acceleres");
 
+            }
+
+            System.out.println("A quina velocitat vols frenar?");
+
+            int velocitatFrenar = m.nextInt();
+
+            if (velocitatFrenar < getVelocitat()) {
+                System.out.println("vas a " + velocitatFrenar);
+                espaiaeri.get(i).setVelocitat(velocitatFrenar);
+
+            } else {
+
+                System.out.println("No pots anar més ràpid si vols frenar");
+
+            }
         }
 
-        System.out.println("A quina velocitat vols frenar?");
 
-        int velocitatFrenar = m.nextInt();
-
-        if (velocitatFrenar < getVelocitat()) {
-            System.out.println("vas a " + velocitatFrenar);
-            espaiaeri.get(i).setVelocitat(velocitatFrenar);
-
-        } else {
-
-            System.out.println("No pots anar més ràpid si vols frenar");
-
-        }
         return espaiaeri;
     }
 
 
     public ArrayList<AvioGeneral> GestionarPujarAlturaiBaixarAltura(ArrayList<AvioGeneral> espaiaeri, int i){
 
+        if (!espaiaeri.get(i).getMotor()){
+            System.out.println("no pots modificar la altura si no tens el motor ences ");
+            if (espaiaeri.get(i).getVelocitat()<180){
+                System.out.println("no pots enlairar-te ");
+            }
+        }else{
+            System.out.println("A quina alçada vols pujar?");
 
-        System.out.println("A quina alçada vols pujar?");
+            int alcadapujar = m.nextInt();
+            System.out.println("estas a  " + alcadapujar + " metres ");
+            if (alcadapujar > getAlcada()) {
 
-        int alcadapujar = m.nextInt();
-        System.out.println("estas a  " + alcadapujar + " metres ");
-        if (alcadapujar > getAlcada()) {
+                espaiaeri.get(i).setAlcada(alcadapujar);
 
-            espaiaeri.get(i).setAlcada(alcadapujar);
+            } else if (alcadapujar > 50000) {
 
-        } else if (alcadapujar > 50000) {
+                System.out.println("No pots anar a la estratosfera");
 
-            System.out.println("No pots anar a la estratosfera");
+            } else {
 
-        } else {
+                System.out.println("No pots anar a una alçada inferior si pujes");
 
-            System.out.println("No pots anar a una alçada inferior si pujes");
+            }
 
-        }
+            System.out.println("A quina alçada vols baixar?");
 
-        System.out.println("A quina alçada vols baixar?");
+            int alcadabaixar = m.nextInt();
+            System.out.println("estas a " + alcadabaixar + " metres ");
+            if (alcadabaixar < getAlcada()) {
 
-        int alcadabaixar = m.nextInt();
-        System.out.println("estas a " + alcadabaixar + " metres ");
-        if (alcadabaixar < getAlcada()) {
+                espaiaeri.get(i).setAlcada(alcadabaixar);
 
-            espaiaeri.get(i).setAlcada(alcadabaixar);
+            } else if (alcadabaixar < 0) {
 
-        } else if (alcadabaixar < 0) {
+                System.out.println("No pots baixar més abaix que 0");
 
-            System.out.println("No pots baixar més abaix que 0");
+            } else {
 
-        } else {
+                System.out.println("No pots anar a una alçada superior si baixes");
 
-            System.out.println("No pots anar a una alçada superior si baixes");
-
+            }
         }
             return espaiaeri;
     }
 
-    public ArrayList<AvioGeneral> GestionarTrenAterratge(ArrayList<AvioGeneral> espaiaeri, int i){
+    public ArrayList<AvioGeneral> GestionarTrenAterratge(ArrayList<AvioGeneral> espaiaeri, int i) {
 
-        if (getTrenAterratge()) {
-
-            System.out.println("El tren d'aterratge està baixat, el vols pujar? (S/N)");
-            String decisioTren = m.next();
-
-            if (decisioTren.equalsIgnoreCase("s")) {
-
-                espaiaeri.get(i).setTrenAterratge(true);
+        if (!espaiaeri.get(i).getMotor()) {
+            System.out.println("No pots modificar el tren d'aterratge si el motor no esta ences ");
+            if (espaiaeri.get(i).getAlcada() < 500) {
+                System.out.println("No pots modificar el tren d'aterratge si no tens una alçaad minima de 500");
             }
-
+            if (espaiaeri.get(i).getAlcada() > 500 && espaiaeri.get(i).getVelocitat() > 300) {
+                System.out.println("No pots modificar el tren d'aterratge a aquesta altitud/velocidad");
+            }
         } else {
 
-            System.out.println("El tren d'aterratge esta pujat, el vols baixar? (S/N)");
-            String decisioTren = m.next();
+            if (getTrenAterratge()) {
 
-            if (decisioTren.equalsIgnoreCase("s")) {
+                System.out.println("El tren d'aterratge està baixat, el vols pujar? (S/N)");
+                String decisioTren = m.next();
 
-                espaiaeri.get(i).setTrenAterratge(false);
+                if (decisioTren.equalsIgnoreCase("s")) {
+
+                    espaiaeri.get(i).setTrenAterratge(true);
+                }
+
+            } else {
+
+                if (espaiaeri.get(i).getAlcada() >= 500 && espaiaeri.get(i).getVelocitat() >= 300) {
+                } else {
+                    System.out.println("El tren d'aterratge esta pujat, el vols baixar? (S/N)");
+                    String decisioTren = m.next();
+
+                    if (decisioTren.equalsIgnoreCase("s")) {
+
+                        espaiaeri.get(i).setTrenAterratge(false);
+
+                    }
+                }
 
             }
-
         }
-return espaiaeri;
+        return espaiaeri;
     }
 
+
     public ArrayList<AvioGeneral> GestionarRumb(ArrayList<AvioGeneral> espaiaeri, int i){
-        System.out.println("Estableix el rumb: ");
-        int rumb = m.nextInt();
-        System.out.println("estas a " + rumb + " graus");
-        if (rumb > 0 && rumb < 360) {
 
-            espaiaeri.get(i).setRumb(rumb);
+       if (!espaiaeri.get(i).getMotor()){
+           System.out.println("no pots gestionar el rumb si el motor no esta ences ");
+       }else {
+           System.out.println("Estableix el rumb: ");
+           int rumb = m.nextInt();
+           System.out.println("estas a " + rumb + " graus");
+           if (rumb > 0 && rumb < 360) {
 
-        } else {
+               espaiaeri.get(i).setRumb(rumb);
 
-            System.out.println("El rumb ha d'estar entre 0 i 360");
+           } else {
 
-        }
-return espaiaeri;
+               System.out.println("El rumb ha d'estar entre 0 i 360");
+
+           }
+       }
+   return espaiaeri;
     }
 
     public ArrayList<AvioGeneral> GestionarCoordenades(ArrayList<AvioGeneral> espaiaeri, int i){
@@ -371,6 +386,32 @@ return espaiaeri;
         return espaiaeri;
     }
 
+    public ArrayList<AvioGeneral> DispararMissils(ArrayList<AvioGeneral> espaiaeri, int i){
+        int numX1 = espaiaeri.get(i).getCoordenadesX()-100;
+        int numX2 = espaiaeri.get(i).getCoordenadesX()+100;
+        int numY1 = espaiaeri.get(i).getCoordenadesY()-100;
+        int numY2 = espaiaeri.get(i).getCoordenadesY()+100;
+        int cont = -1;
 
+        for(int buscarenemic = 0; buscarenemic < espaiaeri.size() ; buscarenemic++){
+            if(((AvioMilitar)espaiaeri.get(buscarenemic)).getBandol() == false) {
+                cont = buscarenemic;
+            }
+        }
+
+        if(cont != -1) {
+            if((espaiaeri.get(cont).getCoordenadesX()>= numX1 && espaiaeri.get(cont).getCoordenadesX()<=numX2) && (espaiaeri.get(cont).getCoordenadesY()>=numY1 && espaiaeri.get(cont).getCoordenadesY()<=numY2)) {
+                if(((AvioMilitar)espaiaeri.get(cont)).getBandol() == false) {
+                    System.out.println("Enemigo encontrado, disparando...");
+                    espaiaeri.remove(cont);
+                    System.out.println("Derribado");
+                } else {
+                    System.out.println("No hemos encontrado a nadie");
+                }
+            }
+        }
+
+        return espaiaeri;
+    }
 
 }

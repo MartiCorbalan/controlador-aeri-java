@@ -19,7 +19,7 @@ public class main {
 
         int opcio;
         boolean sortir=false;
-String esriure;
+        String esriure;
 
         while (!sortir){
             menuPrincipal();
@@ -33,13 +33,11 @@ String esriure;
 
                     case 2 -> GestionarAvions();
 
-                        // case 3 -> MostrarEspaiAeri();
+                    case 3 -> infoAvio();
 
-                        // case 4 -> XifrarAvions();
+                    // case 4 -> XifrarAvions();
 
-                        // case 5 -> DesxifrarAvions();
-
-                    case 6 -> infoAvio();
+                    // case 5 -> DesxifrarAvions();
 
                    case 7 -> {
                         sortir = true;
@@ -116,18 +114,28 @@ String esriure;
             switch (opcio.toUpperCase()){
                 case "COMERCIAL" -> {
                     AvioComercial Comercial = new AvioComercial(matricula,marca, model, fabricant, capacitat, tripulants, origen,desti,100,100,autonomia,0,false,0,0,true);
-                    Comercial.setCoordenadesX(100);
-                    Comercial.setCoordenadesY(100);
                     espaiAeri.add(Comercial);
                 }
+
                 case "MILITAR" -> {
-                    System.out.println("Introduce el bando del avión: ");
-                    String bando = m.next();
-                    AvioMilitar AvionMilitar = new AvioMilitar( matricula,  marca, model,  fabricant,  capacitat,  tripulants,  origen,  desti,  100,
-                            100,  autonomia,  0,  false,  0, 0,  true,  0,  0,bando);
-                    AvionMilitar.setCoordenadesX(100);
-                    AvionMilitar.setCoordenadesY(100);
-                    espaiAeri.add(AvionMilitar);
+                    System.out.println("bandol del avio, ALIAT o ENEMIC? ");
+                    opcio = m.next();
+                    switch (opcio.toUpperCase()){
+                        case "ALIAT" ->{
+                            AvioMilitar AvionMilitar = new AvioMilitar( matricula,  marca, model,  fabricant,  capacitat,  tripulants,  origen,  desti,  100,
+                                    100,  autonomia,  0,  false,  0, 0,  true,  0,true);
+                            espaiAeri.add(AvionMilitar);
+                        }
+
+                        case "ENEMIC" ->{
+
+                            AvioMilitar AvionMilitar = new AvioMilitar( matricula,  marca, model,  fabricant,  capacitat,  tripulants,  origen,  desti,  100,
+                                    100,  autonomia,  0,  false,  0, 0,  true,  0 ,false);
+                            espaiAeri.add(AvionMilitar);
+                        }
+                    }
+
+
                 }
             }
 
@@ -171,14 +179,12 @@ String esriure;
                 System.out.println("Velocitat: " + info.getVelocitat());
                 System.out.println("Tren aterratge: " + info.getTrenAterratge());
                 System.out.println("Motor: " + info.getMotor());
-                // System.out.println("Misils: " + info.getMissils().length);
+                System.out.println("Misils: " + (((AvioMilitar)espaiAeri.get(i)).getMissils()));
                 System.out.println("Origen: " + info.getOrigen());
                 System.out.println("Desti: " + info.getDesti());
-                System.out.println("Bandol: " + info.getBandol());
+                System.out.println("Bandol: " + (((AvioMilitar)espaiAeri.get(i)).getBandol()));
             }
             System.out.println(" ");
-
-
         }
     }
 
@@ -222,7 +228,7 @@ String esriure;
                                     case "ALTURA" -> {
                                         espaiAeri = espaiAeri.get(i).GestionarPujarAlturaiBaixarAltura(espaiAeri,i);
                                     }
-                                    case "TREN-ATERRATGE" -> {
+                                    case "TRENATERRATGE" -> {
                                         espaiAeri = espaiAeri.get(i).GestionarTrenAterratge(espaiAeri,i);
                                     }
                                     case "RUMB" -> {
@@ -231,7 +237,10 @@ String esriure;
                                     case "POSICIONAR" -> {
                                         espaiAeri = espaiAeri.get(i).GestionarCoordenades(espaiAeri,i);
                                     }
-                                    case "MISILS" -> System.out.println("Null");
+                                    case "MISILS" ->{
+                                        espaiAeri = espaiAeri.get(i).DispararMissils(espaiAeri,i);
+                                    }
+
                                     case "SORTIR" -> {
                                         salir = true;
                                         System.out.println("Has salido de la gestión del avión");
