@@ -59,7 +59,7 @@ public class main {
         System.out.println("2.Gestionar un avió ");
         System.out.println("3.Mostrar l'espai aeri actual  ");
         System.out.println("4.Xifrar els aviones de combat ");
-        System.out.println("5.Desxifrar els avions de combate ");
+        System.out.println("5.Desxifrar els avions de combat ");
         System.out.println("6.Info ");
         System.out.println("7.Sortir");
 
