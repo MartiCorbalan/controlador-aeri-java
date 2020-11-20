@@ -402,11 +402,11 @@ public class AvioGeneral{
         if(cont != -1) {
             if((espaiaeri.get(cont).getCoordenadesX()>= numX1 && espaiaeri.get(cont).getCoordenadesX()<=numX2) && (espaiaeri.get(cont).getCoordenadesY()>=numY1 && espaiaeri.get(cont).getCoordenadesY()<=numY2)) {
                 if(((AvioMilitar)espaiaeri.get(cont)).getBandol() == false) {
-                    System.out.println("Enemigo encontrado, disparando...");
+                    System.out.println("Enemic trobat, disparant...");
                     espaiaeri.remove(cont);
-                    System.out.println("Derribado");
+                    System.out.println("Destruit");
                 } else {
-                    System.out.println("No hemos encontrado a nadie");
+                    System.out.println("No hem trobat a cap enemic");
                 }
             }
         }
