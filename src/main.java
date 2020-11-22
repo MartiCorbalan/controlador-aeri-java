@@ -36,15 +36,13 @@ public class main {
 
                     case 2 -> GestionarAvions();
 
-                    case 3 -> infoAvio();
+                    case 3 -> mostrarinfo();
 
                     // case 4 -> XifrarAvions();
 
                     // case 5 -> DesxifrarAvions();
 
-                    case 6 -> mostrarinfo();
-
-                    case 7 -> {
+                    case 6 -> {
                         sortir = true;
                         System.out.println("El joc s'ha acabau.");
                         return;
@@ -62,14 +60,14 @@ public class main {
     public void menuPrincipal() {
         System.out.println("1.Afegir un avió  ");
         System.out.println("2.Gestionar un avió ");
-        System.out.println("3.Mostrar l'espai aeri actual  ");
+        System.out.println("3.Mostrar info  ");
         System.out.println("4.Xifrar els aviones de combat ");
         System.out.println("5.Desxifrar els avions de combat ");
-        System.out.println("6.Info ");
-        System.out.println("7.Sortir");
+        System.out.println("6.Sortir");
 
     }
 
+    //indiquem si podem crear un avio o no
     public boolean checkPista() {
         for (AvioGeneral check : espaiAeri) {
 
@@ -116,6 +114,8 @@ public class main {
             System.out.println("COMERCIAL");
             System.out.println("MILITAR");
             String opcio = m.next();
+
+            //passem totes les dades necessaries per crear un avio.
             switch (opcio.toUpperCase()) {
                 case "COMERCIAL" -> {
                     AvioComercial Comercial = new AvioComercial(matricula, marca, model, fabricant, capacitat, tripulants, origen, desti, 100, 100, autonomia, 0, false, 0, 0, true);
@@ -144,12 +144,12 @@ public class main {
                 }
             }
 
-
+            //indiquem que com a maxim podem tenir 11 avions
         } else if (!checkPista()) {
             if (espaiAeri.size() == 11) {
                 System.out.println("No pots crear més avions");
             }
-            //Si quiero que haga BOOM
+
             System.out.println("No pots crear més avions, la pista esta plena ");
 
         }
@@ -158,7 +158,7 @@ public class main {
 
     }
 
-
+/*
     public void infoAvio() {
         if (espaiAeri.size() == 0) {
             System.out.println("No hi ha ningun avió a l'espai aeri ");
@@ -167,16 +167,13 @@ public class main {
 
             AvioGeneral info = espaiAeri.get(i);
 
+            //informem de totes les dades dels avions
             if (info != null) {
 
                 System.out.println("Aeronau " + (i + 1));
                 System.out.println("Marca: " + info.getMarca());
                 System.out.println("Model: " + info.getModel());
-                /* if (info.getxifrat()) {
-                    System.out.println("Matricula: ENCRIPTAT");
-                } else {
-                    System.out.println("Matrícula: " + info.getMatricula());
-                }*/
+
                 System.out.println("X: " + info.getCoordenadesX());
                 System.out.println("Y: " + info.getCoordenadesY());
                 System.out.println("Alçada: " + info.getAlcada());
@@ -191,7 +188,9 @@ public class main {
             System.out.println(" ");
         }
     }
+*/
 
+        //gestionem els avions, per poguer crear un avio primer has de gestionar el que has creat abans, un cop gestionat ja pots crear mes avions
     public void GestionarAvions() {
         if (espaiAeri.size() == 0) {
             System.out.println("no hi ha cap avio, no pots crear res");
@@ -267,7 +266,7 @@ public class main {
 
 
     public void taulaInfo() {
-
+        //mostrem la taula d'informació en l'ordre correcte
         System.out.println("matricula marca model origen desti coordenadesX coordenadesY  motor velocitat alcada ");
         int contador = 0;
         int contador2 = 0;
@@ -299,7 +298,7 @@ public class main {
             System.out.println();
         }
     }
-
+    //mostrem la informacio dintre de la taula
      public void  mostrarinfo(){
          taulaInfo();
 

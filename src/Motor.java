@@ -14,17 +14,5 @@ public class Motor {
         apagat = true;
     }
 
-    public String status() {
 
-        if (ences) {
-
-            return "On";
-
-        } else {
-
-            return "Off";
-
-        }
-
-    }
 }

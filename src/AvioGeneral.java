@@ -191,6 +191,7 @@ public class AvioGeneral{
 
 
 
+    //metode per gestionar el motor
     public ArrayList<AvioGeneral> Gestionarmotor(ArrayList<AvioGeneral> espaiaeri, int i) throws InterruptedException {
 
 
@@ -225,7 +226,7 @@ public class AvioGeneral{
                 return espaiaeri;
     }
 
-
+    //metode per gestionar la velocitat
     public ArrayList<AvioGeneral> GestionarVelocitat(ArrayList<AvioGeneral> espaiaeri, int i){
 
         if (!espaiaeri.get(i).getMotor()){
@@ -262,7 +263,7 @@ public class AvioGeneral{
         return espaiaeri;
     }
 
-
+    ////metode per gestionar la alçada
     public ArrayList<AvioGeneral> GestionarPujarAlturaiBaixarAltura(ArrayList<AvioGeneral> espaiaeri, int i){
 
         if (!espaiaeri.get(i).getMotor()){
@@ -309,7 +310,7 @@ public class AvioGeneral{
         }
             return espaiaeri;
     }
-
+    //metode per gestionar el tren d'aterratge del avio
     public ArrayList<AvioGeneral> GestionarTrenAterratge(ArrayList<AvioGeneral> espaiaeri, int i) {
 
         if (!espaiaeri.get(i).getMotor()) {
@@ -351,7 +352,7 @@ public class AvioGeneral{
         return espaiaeri;
     }
 
-
+    //metode per gestionar el rumb
     public ArrayList<AvioGeneral> GestionarRumb(ArrayList<AvioGeneral> espaiaeri, int i){
 
        if (!espaiaeri.get(i).getMotor()){
@@ -373,6 +374,7 @@ public class AvioGeneral{
    return espaiaeri;
     }
 
+    //metode per gestionar les coordenades
     public ArrayList<AvioGeneral> GestionarCoordenades(ArrayList<AvioGeneral> espaiaeri, int i){
         System.out.println("Posiciona la X i la Y del avió");
         System.out.println("X:");
@@ -386,6 +388,7 @@ public class AvioGeneral{
         return espaiaeri;
     }
 
+    //metode per gestionar els missils
     public ArrayList<AvioGeneral> DispararMissils(ArrayList<AvioGeneral> espaiaeri, int i){
         int numX1 = espaiaeri.get(i).getCoordenadesX()-100;
         int numX2 = espaiaeri.get(i).getCoordenadesX()+100;
@@ -399,6 +402,7 @@ public class AvioGeneral{
             }
         }
 
+        //si l'avio troba un enemic aprop disparara directament
         if(cont != -1) {
             if((espaiaeri.get(cont).getCoordenadesX()>= numX1 && espaiaeri.get(cont).getCoordenadesX()<=numX2) && (espaiaeri.get(cont).getCoordenadesY()>=numY1 && espaiaeri.get(cont).getCoordenadesY()<=numY2)) {
                 if(((AvioMilitar)espaiaeri.get(cont)).getBandol() == false) {
