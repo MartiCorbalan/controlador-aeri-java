@@ -19,6 +19,11 @@ public class main {
     String[][] arrayInfo = new String[10][10];
 
     String guardarmodel;
+    String guardarMarca;
+    String guardarorigen;
+    String guardardesti;
+    String guardarcoordenadesX;
+    String getGuardarcoordenadesY;
 
     public void Principal() {
 
@@ -295,6 +300,10 @@ public class main {
          int xifrar=0;
          String matricula;
          String guardarmodel2;
+         String guardarMarca2;
+         String guardarorigen2;
+         String guardardesti2;
+
 
          System.out.println("Introdueix la matricula de l'avió: ");
          matricula = m.next();
@@ -312,20 +321,39 @@ public class main {
          }
             //posem el model dintre de l'array
          guardarmodel2 = espaiAeri.get(xifrar).getModel();
+         guardarMarca2 = espaiAeri.get(xifrar).getMarca();
+         guardarorigen2 = espaiAeri.get(xifrar).getOrigen();
+         guardardesti2 = espaiAeri.get(xifrar).getDesti();
+
+
          //model dintre de array per xifrar
          char xifrarCoses[] = guardarmodel2.toCharArray();
+         char xifrarMarca[] = guardarMarca2.toCharArray();
+         char xifrarorigen[] = guardarorigen2.toCharArray();
+         char xifrardesti[] = guardardesti2.toCharArray();
 
-
-
-         for (int i = 0; i < xifrarCoses.length; i++){
-                //si la posicio es correcte xifrem el model, i posem per cada lletre li sumem 10
-             xifrarCoses[i]=(char)(xifrarCoses[i] + (char)10);
-
+         for (int i = 0; i < 2; i++){
+                //si la posicio es correcte xifrem el model, i posem per cada lletre li sumem 5
+             xifrarMarca[i]=(char)(xifrarMarca[i] + (char)5);
+             xifrarCoses[i]=(char)(xifrarCoses[i] + (char)5);
+             xifrarorigen[i]=(char)(xifrarorigen[i] + (char)5);
+             xifrardesti[i]=(char)(xifrardesti[i] + (char)5);
 
          }
             //enseñem que el model s'ha xifrat
          guardarmodel = String.valueOf(xifrarCoses);
          espaiAeri.get(xifrar).setModel("xifrat");
+         guardarMarca = String.valueOf(xifrarMarca);
+         espaiAeri.get(xifrar).setMarca("xifrat");
+         guardarorigen = String.valueOf(xifrarorigen);
+         espaiAeri.get(xifrar).setOrigen("xifrat");
+         guardardesti = String.valueOf(xifrardesti);
+         espaiAeri.get(xifrar).setDesti("xifrat");
+
+
+
+
+
 
      }
 
@@ -335,7 +363,8 @@ public class main {
          int desxifrar=0;
 
          String matricula;
-         String guardarmodel2;
+
+
          System.out.println("Introdueix la matricula de l'avió: ");
          matricula = m.next();
 
@@ -350,16 +379,31 @@ public class main {
 
          }
 
-         guardarmodel2=espaiAeri.get(desxifrar).getModel();
-         char xifrarCoses[] = guardarmodel.toCharArray();
 
-         for (int i=0; i<xifrarCoses.length; i++){
-                //restem les 10 lletres posades quan xifrem perque la paraula es quedi igual
-             xifrarCoses[i]=(char)(xifrarCoses[i] - (char)10);
+         char desxifrarCoses[] = guardarmodel.toCharArray();
+         char desxifrarMarca[] = guardarMarca.toCharArray();
+         char desxifrarorigen[] = guardarorigen.toCharArray();
+         char desxifrardesti[] = guardardesti.toCharArray();
+
+         for (int i=0; i< 2; i++){
+                //restem les 5 lletres posades quan xifrem perque la paraula es quedi igual
+             desxifrarMarca[i]=(char)(desxifrarMarca[i] - (char)5);
+             desxifrarCoses[i]=(char)(desxifrarCoses[i] - (char)5);
+             desxifrarorigen[i]=(char)(desxifrarorigen[i] - (char)5);
+             desxifrardesti[i]=(char)(desxifrardesti[i] - (char)5);
          }
 
-         guardarmodel = String.valueOf(xifrarCoses);
+         guardarmodel = String.valueOf(desxifrarCoses);
          espaiAeri.get(desxifrar).setModel(guardarmodel);
+         guardarMarca = String.valueOf(desxifrarMarca);
+         espaiAeri.get(desxifrar).setMarca(guardarMarca);
+         guardarorigen = String.valueOf(desxifrarorigen);
+         espaiAeri.get(desxifrar).setOrigen(guardarorigen);
+         guardardesti = String.valueOf(desxifrardesti);
+         espaiAeri.get(desxifrar).setDesti(guardardesti);
+
+
+
 
      }
 
