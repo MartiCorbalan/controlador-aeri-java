@@ -334,21 +334,21 @@ public class main {
 
          for (int i = 0; i < 2; i++){
                 //si la posicio es correcte xifrem el model, i posem per cada lletre li sumem 5
-             xifrarMarca[i]=(char)(xifrarMarca[i] + (char)5);
-             xifrarCoses[i]=(char)(xifrarCoses[i] + (char)5);
-             xifrarorigen[i]=(char)(xifrarorigen[i] + (char)5);
-             xifrardesti[i]=(char)(xifrardesti[i] + (char)5);
+             xifrarMarca[i]=(char)(xifrarMarca[i] + (char)10);
+             xifrarCoses[i]=(char)(xifrarCoses[i] + (char)10);
+             xifrarorigen[i]=(char)(xifrarorigen[i] + (char)10);
+             xifrardesti[i]=(char)(xifrardesti[i] + (char)10);
 
          }
             //enseñem que el model s'ha xifrat
          guardarmodel = String.valueOf(xifrarCoses);
-         espaiAeri.get(xifrar).setModel("xifrat");
+         espaiAeri.get(xifrar).setModel(guardarmodel);
          guardarMarca = String.valueOf(xifrarMarca);
-         espaiAeri.get(xifrar).setMarca("xifrat");
+         espaiAeri.get(xifrar).setMarca(guardarMarca);
          guardarorigen = String.valueOf(xifrarorigen);
-         espaiAeri.get(xifrar).setOrigen("xifrat");
+         espaiAeri.get(xifrar).setOrigen(guardarorigen);
          guardardesti = String.valueOf(xifrardesti);
-         espaiAeri.get(xifrar).setDesti("xifrat");
+         espaiAeri.get(xifrar).setDesti(guardardesti);
 
 
 
@@ -387,10 +387,10 @@ public class main {
 
          for (int i=0; i< 2; i++){
                 //restem les 5 lletres posades quan xifrem perque la paraula es quedi igual
-             desxifrarMarca[i]=(char)(desxifrarMarca[i] - (char)5);
-             desxifrarCoses[i]=(char)(desxifrarCoses[i] - (char)5);
-             desxifrarorigen[i]=(char)(desxifrarorigen[i] - (char)5);
-             desxifrardesti[i]=(char)(desxifrardesti[i] - (char)5);
+             desxifrarMarca[i]=(char)(desxifrarMarca[i] - (char)10);
+             desxifrarCoses[i]=(char)(desxifrarCoses[i] - (char)10);
+             desxifrarorigen[i]=(char)(desxifrarorigen[i] - (char)10);
+             desxifrardesti[i]=(char)(desxifrardesti[i] - (char)10);
          }
 
          guardarmodel = String.valueOf(desxifrarCoses);
