@@ -189,8 +189,6 @@ public class AvioGeneral{
     }
 
 
-
-
     //metode per gestionar el motor
     public ArrayList<AvioGeneral> Gestionarmotor(ArrayList<AvioGeneral> espaiaeri, int i) throws InterruptedException {
 
@@ -417,5 +415,6 @@ public class AvioGeneral{
 
         return espaiaeri;
     }
+
 
 }

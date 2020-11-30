@@ -18,6 +18,8 @@ public class main {
 
     String[][] arrayInfo = new String[10][10];
 
+    String guardarmodel;
+
     public void Principal() {
 
         int opcio;
@@ -38,9 +40,9 @@ public class main {
 
                     case 3 -> mostrarinfo();
 
-                    // case 4 -> XifrarAvions();
+                     case 4 -> xifrar();
 
-                    // case 5 -> DesxifrarAvions();
+                     case 5 -> desxifrar();
 
                     case 6 -> {
                         sortir = true;
@@ -128,14 +130,14 @@ public class main {
                     switch (opcio.toUpperCase()) {
                         case "ALIAT" -> {
                             AvioMilitar AvionMilitar = new AvioMilitar(matricula, marca, model, fabricant, capacitat, tripulants, origen, desti, 100,
-                                    100, autonomia, 0, false, 0, 0, true, 0, true);
+                                    100, autonomia, 0, false, 0, 0, true, 0, true, false);
                             espaiAeri.add(AvionMilitar);
                         }
 
                         case "ENEMIC" -> {
 
                             AvioMilitar AvionMilitar = new AvioMilitar(matricula, marca, model, fabricant, capacitat, tripulants, origen, desti, 100,
-                                    100, autonomia, 0, false, 0, 0, true, 0, false);
+                                    100, autonomia, 0, false, 0, 0, true, 0, false, false);
                             espaiAeri.add(AvionMilitar);
                         }
                     }
@@ -158,40 +160,9 @@ public class main {
 
     }
 
-/*
-    public void infoAvio() {
-        if (espaiAeri.size() == 0) {
-            System.out.println("No hi ha ningun avió a l'espai aeri ");
-        }
-        for (int i = 0; i < espaiAeri.size(); i++) {
-
-            AvioGeneral info = espaiAeri.get(i);
-
-            //informem de totes les dades dels avions
-            if (info != null) {
-
-                System.out.println("Aeronau " + (i + 1));
-                System.out.println("Marca: " + info.getMarca());
-                System.out.println("Model: " + info.getModel());
-
-                System.out.println("X: " + info.getCoordenadesX());
-                System.out.println("Y: " + info.getCoordenadesY());
-                System.out.println("Alçada: " + info.getAlcada());
-                System.out.println("Velocitat: " + info.getVelocitat());
-                System.out.println("Tren aterratge: " + info.getTrenAterratge());
-                System.out.println("Motor: " + info.getMotor());
-                System.out.println("Misils: " + (((AvioMilitar) espaiAeri.get(i)).getMissils()));
-                System.out.println("Origen: " + info.getOrigen());
-                System.out.println("Desti: " + info.getDesti());
-                System.out.println("Bandol: " + (((AvioMilitar) espaiAeri.get(i)).getBandol()));
-            }
-            System.out.println(" ");
-        }
-    }
-*/
-
         //gestionem els avions, per poguer crear un avio primer has de gestionar el que has creat abans, un cop gestionat ja pots crear mes avions
     public void GestionarAvions() {
+
         if (espaiAeri.size() == 0) {
             System.out.println("no hi ha cap avio, no pots crear res");
         } else {
@@ -316,6 +287,79 @@ public class main {
         }
 
 
+
+     }
+
+     public void xifrar() {
+
+         int xifrar=0;
+         String matricula;
+         String guardarmodel2;
+
+         System.out.println("Introdueix la matricula de l'avió: ");
+         matricula = m.next();
+
+         //recorrem l'array per trobar l'avio correcte
+         for (int m = 0; m < espaiAeri.size(); m++) {
+             //comprovem la matricula
+             if (espaiAeri.get(m).getMatricula().equalsIgnoreCase(matricula)) {
+                 xifrar = m;
+             } else {
+                 System.out.println("no hi ha cap avio amb aquesta matricula");
+                 AvioGeneral verify = espaiAeri.get(m);
+             }
+
+         }
+            //posem el model dintre de l'array
+         guardarmodel2 = espaiAeri.get(xifrar).getModel();
+         //model dintre de array per xifrar
+         char xifrarCoses[] = guardarmodel2.toCharArray();
+
+
+
+         for (int i = 0; i < xifrarCoses.length; i++){
+                //si la posicio es correcte xifrem el model, i posem per cada lletre li sumem 10
+             xifrarCoses[i]=(char)(xifrarCoses[i] + (char)10);
+
+
+         }
+            //enseñem que el model s'ha xifrat
+         guardarmodel = String.valueOf(xifrarCoses);
+         espaiAeri.get(xifrar).setModel("xifrat");
+
+     }
+
+
+     public void desxifrar(){
+
+         int desxifrar=0;
+
+         String matricula;
+         String guardarmodel2;
+         System.out.println("Introdueix la matricula de l'avió: ");
+         matricula = m.next();
+
+         for (int i = 0; i < espaiAeri.size(); i++) {
+             if (espaiAeri.get(i).getMatricula().equalsIgnoreCase(matricula)) {
+                 desxifrar = i;
+
+             } else {
+                 System.out.println("no hi ha cap avio amb aquesta matricula");
+                 AvioGeneral verify = espaiAeri.get(i);
+             }
+
+         }
+
+         guardarmodel2=espaiAeri.get(desxifrar).getModel();
+         char xifrarCoses[] = guardarmodel.toCharArray();
+
+         for (int i=0; i<xifrarCoses.length; i++){
+                //restem les 10 lletres posades quan xifrem perque la paraula es quedi igual
+             xifrarCoses[i]=(char)(xifrarCoses[i] - (char)10);
+         }
+
+         guardarmodel = String.valueOf(xifrarCoses);
+         espaiAeri.get(desxifrar).setModel(guardarmodel);
 
      }
 
